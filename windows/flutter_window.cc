@@ -16,28 +16,7 @@
 #include "include/desktop_multi_window/desktop_multi_window_plugin.h"
 #include "multi_window_plugin_internal.h"
 
-/// RustDesk deps using method channel
-// #include <bitsdojo_window_windows/bitsdojo_window_plugin.h>
-#include <url_launcher_windows/url_launcher_windows.h>
-#include <window_size/window_size_plugin.h>
-#include <texture_rgba_renderer/texture_rgba_renderer_plugin_c_api.h>
-// #include <window_manager/window_manager_plugin.h>
-// #include <screen_retriever/screen_retriever_plugin.h>
-// #include <tray_manager/tray_manager_plugin.h>
-
 void RustDeskRegisterPlugins(flutter::PluginRegistry* registry) {
-    // BitsdojoWindowPluginRegisterWithRegistrar(
-    //    registry->GetRegistrarForPlugin("BitsdojoWindowPlugin"));
-    UrlLauncherWindowsRegisterWithRegistrar(
-        registry->GetRegistrarForPlugin("UrlLauncherWindows"));
-    WindowSizePluginRegisterWithRegistrar(registry->GetRegistrarForPlugin("WindowSizePlugin"));
-    TextureRgbaRendererPluginCApiRegisterWithRegistrar(registry->GetRegistrarForPlugin("TextureRgbaRendererPlugin"));
-    // WindowManagerPluginRegisterWithRegistrar(
-    //     registry->GetRegistrarForPlugin("WindowManagerPlugin"));
-    // ScreenRetrieverPluginRegisterWithRegistrar(
-    //   registry->GetRegistrarForPlugin("ScreenRetrieverPlugin"));
-    // TrayManagerPluginRegisterWithRegistrar(
-    //  registry->GetRegistrarForPlugin("TrayManagerPlugin"));
 }
 
 bool IsWindows11OrGreater() {
@@ -204,7 +183,7 @@ LRESULT FlutterWindow::MessageHandler(HWND hwnd, UINT message, WPARAM wparam, LP
         //  when window is in full screen and we don't want that
         if (wparam && IsFullscreen()) {
             // Note:
-            // I dont know why we should -3 on the bottom. 
+            // I dont know why we should -3 on the bottom.
             //
             // NCCALCSIZE_PARAMS* sz = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
             // sz->rgrc[0].bottom -= 3;

@@ -22,9 +22,31 @@ class MultiWindowManager {
     let window = FlutterWindow(id: windowId, arguments: arguments)
     window.delegate = self
     window.windowChannel.methodHandler = self.handleMethodCall
+    window.window.collectionBehavior = [.moveToActiveSpace, .fullScreenPrimary]
     windows[windowId] = window
+    hideShow(windowId: -1)
     return windowId
   }
+
+
+  func hideShow(windowId: Int64) {
+      for (id, window) in windows {
+        if (windowId == -1 || id != windowId) {
+          if !window.isHidden() {
+            window.hide()
+            window.show()
+          }
+        }
+      }
+      if (windowId != -1) {
+        guard let window = windows[windowId] else {
+          debugPrint("window \(windowId) not exists.")
+          return
+        }
+        window.hide()
+        window.show()
+      }
+    }
 
   func attachMainWindow(window: NSWindow, _ channel: WindowChannel) {
     let mainWindow = BaseFlutterWindow(window: window, channel: channel)
@@ -45,6 +67,7 @@ class MultiWindowManager {
       debugPrint("window \(windowId) not exists.")
       return
     }
+    hideShow(windowId: -1)
     window.show()
   }
 

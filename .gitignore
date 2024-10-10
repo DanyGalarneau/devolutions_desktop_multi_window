@@ -48,3 +48,25 @@ linux/build/CMakeFiles/3.24.1/CMakeDetermineCompilerABI_CXX.bin
 linux/build/CMakeFiles/3.24.1/CMakeSystem.cmake
 linux/build/CMakeFiles/3.24.1/CompilerIdCXX/a.out
 linux/build/CMakeFiles/3.24.1/CompilerIdCXX/CMakeCXXCompilerId.cpp
+
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+.flutter-plugins-dependencies
+.vscode/*
+!.vscode/settings.json
+.vs/
+obj/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
