@@ -24,27 +24,17 @@ class MultiWindowManager {
     window.windowChannel.methodHandler = self.handleMethodCall
     window.window.collectionBehavior = [.moveToActiveSpace, .fullScreenPrimary]
     windows[windowId] = window
-    hideShow(windowId: -1)
+    hideShow()
     return windowId
   }
 
 
-  func hideShow(windowId: Int64) {
-      for (id, window) in windows {
-        if (windowId == -1 || id != windowId) {
-          if !window.isHidden() {
-            window.hide()
-            window.show()
-          }
-        }
-      }
-      if (windowId != -1) {
-        guard let window = windows[windowId] else {
-          debugPrint("window \(windowId) not exists.")
-          return
-        }
-        window.hide()
-        window.show()
+  func hideShow() {
+      for (_, wnd) in windows {
+            if !wnd.isHidden() {
+              wnd.hide()
+              wnd.show()
+            }
       }
     }
 
@@ -67,7 +57,7 @@ class MultiWindowManager {
       debugPrint("window \(windowId) not exists.")
       return
     }
-    hideShow(windowId: -1)
+    hideShow()
     window.show()
   }
 

@@ -100,13 +100,14 @@ class DesktopMultiWindow {
 
   /// Hide or show all visiable windows.
   /// @platforms macos
-  static Future<void> hideShow(int windowId) async {
+  static Future<dynamic> hideShow() async {
     try {
-      final result =
-      await miltiWindowChannel.invokeMethod('hideShow', windowId);
+      final result = await miltiWindowChannel
+          .invokeMethod<List<dynamic>>('hideShow');
       return result;
     } catch (e) {
       print('Unreachable, plugin exception, func hideShow(), $e');
+      return null;
     }
   }
 
